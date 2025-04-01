@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Livro do Max | Golden Retriever</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #f8f4ea;
+            --primary-text: #4a3b24;
+            --highlight: #e8c98d;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+            height: 100%;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-text);
+            background-color: var(--primary-bg);
+            min-height: 100vh;
+        }
+        
+        .page {
+            height: 100vh;
+            scroll-snap-align: start;
+            overflow-y: auto;
+        }
+        
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--highlight);
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(232, 201, 141, 0.5);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active, .nav-dot:hover {
+            background-color: var(--highlight);
+            transform: scale(1.2);
+        }
+        
+        .portrait-container img {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pedigree-data {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 32px rgba(74, 59, 36, 0.1);
+        }
+        
+        .bio-text {
+            line-height: 1.8;
+        }
+        
+        .gradient-overlay {
+            background: linear-gradient(to bottom, rgba(248, 244, 234, 0) 0%, rgba(248, 244, 234, 0.9) 90%, rgba(248, 244, 234, 1) 100%);
+        }
+        
+        /* Estilos para impressão em PDF */
+        @media print {
+            html, body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--primary-bg);
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .page {
+                page-break-after: always;
+                page-break-inside: avoid;
+                height: 100vh;
+                width: 100%;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            nav.fixed {
+                display: none !important;
+            }
+            
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+            
+            /* Garantir que as imagens e fundos sejam impressos */
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Página de Navegação -->
+    <nav class="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col space-y-4">
+        <a href="#page1" class="nav-dot active" data-page="1"></a>
+        <a href="#page2" class="nav-dot" data-page="2"></a>
+        <a href="#page3" class="nav-dot" data-page="3"></a>
+        <a href="#page4" class="nav-dot" data-page="4"></a>
+    </nav>
+
+    <!-- Página 1 - Capa -->
+    <section id="page1" class="page flex items-center justify-center relative bg-[#f8f4ea]">
+        <div class="w-full h-full absolute overflow-hidden">
+            <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Eo1U9k4AbSJPoV7seW2PDq2d/user-oGBnQp1igcXKlzRsuv3QKfH3/img-aRFgtuj7vCRJTtj1r4V13teA.png?st=2025-04-01T16%3A59%3A28Z&se=2025-04-01T18%3A59%3A28Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-03-31T22%3A02%3A36Z&ske=2025-04-01T22%3A02%3A36Z&sks=b&skv=2024-08-04&sig=cnK2PE4OPBD/%2Bi3MoIjMklF4hNjsFT%2Bb8Src88oxyqQ%3D" 
+                 alt="Max, o Golden Retriever" 
+                 class="w-full h-full object-cover object-center">
+            <div class="absolute inset-0 gradient-overlay"></div>
+        </div>
+        <div class="absolute top-1/4 left-0 w-full text-center z-10">
+            <h1 class="book-title text-7xl md:text-8xl text-white font-bold mb-4 tracking-wide">MAX</h1>
+            <p class="text-white text-xl md:text-2xl font-light italic">O Golden Retriever</p>
+        </div>
+    </section>
+
+    <!-- Página 2 - Dados do Cachorro -->
+    <section id="page2" class="page flex flex-col items-center justify-center p-6 md:p-12 bg-[#f8f4ea]">
+        <div class="max-w-4xl w-full bg-white rounded-2xl shadow-xl overflow-hidden">
+            <!-- Imagem do filhote -->
+            <div class="w-full overflow-hidden">
+                <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Eo1U9k4AbSJPoV7seW2PDq2d/user-oGBnQp1igcXKlzRsuv3QKfH3/img-n5zmuy8quxGvFPVKM3ORmXJY.png?st=2025-04-01T16%3A59%3A01Z&se=2025-04-01T18%3A59%3A01Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-01T08%3A55%3A30Z&ske=2025-04-02T08%3A55%3A30Z&sks=b&skv=2024-08-04&sig=lC6fjHVH6rfFamWo6GQvEwk354X08rcssJ2iGiWCCw8%3D"
+                 alt="Max filhote"
+                 class="w-full object-contain mx-auto" />
+            </div>
+            
+            <!-- Informações do pedigree -->
+            <div class="p-8 md:p-10">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-8 text-[#4a3b24] book-title">MAX</h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6 text-[#4a3b24]">
+                    <div class="border-b border-[#e8c98d] pb-2">
+                        <p class="font-semibold text-[#906e28]">Raça:</p>
+                        <p>Golden Retriever</p>
+                    </div>
+                    <div class="border-b border-[#e8c98d] pb-2">
+                        <p class="font-semibold text-[#906e28]">Nº RG:</p>
+                        <p>123456789</p>
+                    </div>
+                    <div class="border-b border-[#e8c98d] pb-2">
+                        <p class="font-semibold text-[#906e28]">Data de Nascimento:</p>
+                        <p>01/01/2020</p>
+                    </div>
+                    <div class="border-b border-[#e8c98d] pb-2">
+                        <p class="font-semibold text-[#906e28]">Sexo:</p>
+                        <p>Masculino</p>
+                    </div>
+                    <div class="border-b border-[#e8c98d] pb-2">
+                        <p class="font-semibold text-[#906e28]">Nome do Pai:</p>
+                        <p>Rex</p>
+                    </div>
+                    <div class="border-b border-[#e8c98d] pb-2">
+                        <p class="font-semibold text-[#906e28]">Nome da Mãe:</p>
+                        <p>Luna</p>
+                    </div>
+                    <div class="border-b border-[#e8c98d] pb-2 sm:col-span-2">
+                        <p class="font-semibold text-[#906e28]">Cor:</p>
+                        <p>Amarelo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Página 3 - Informações sobre a Raça -->
+    <section id="page3" class="page flex items-center justify-center p-6 md:p-12 bg-[#f8f4ea]">
+        <div class="max-w-4xl w-full bg-white rounded-2xl shadow-xl p-8 md:p-10 overflow-y-auto max-h-screen">
+            <!-- Seção 1: Minha História -->
+            <div class="mb-12">
+                <h3 class="section-title text-2xl md:text-3xl font-semibold text-[#906e28] mb-8">Minha História</h3>
+                <div class="bio-text text-[#4a3b24]">
+                    <p class="mb-4">Oi, humano querido! Você sabia que nós, Golden Retrievers, temos uma história fascinante? Permita-me contar um pouco sobre minhas origens. Tudo começou lá na Escócia, no século XIX. Lord Tweedmouth, um nobre apaixonado por cães, decidiu criar a raça perfeita para caça. Ele buscava um cão inteligente, forte, com excelente faro e, claro, gentil e leal.</p>
+                    <p class="mb-4">Assim, cruzou diversas raças, como o Tweed Water Spaniel (hoje extinto), o Setter Irlandês e o Bloodhound, até chegar em nós, os maravilhosos Golden Retrievers. Fomos criados para sermos os melhores cães de caça, recuperando aves aquáticas com delicadeza e eficiência. Nosso nome, "Golden", vem da nossa linda pelagem dourada, e "Retriever", da nossa habilidade em recuperar as presas sem danificá-las.</p>
+                    <p class="mb-4">Com o tempo, nossa inteligência, docilidade e vontade de agradar nos tornaram mais do que cães de caça. Nos tornamos cães de companhia, cães-guia, cães de terapia e, o mais importante, melhores amigos dos nossos humanos.</p>
+                    <p>Imagine a jornada dos meus ancestrais, atravessando gerações, aprimorando suas habilidades e seu temperamento, até chegar em mim, aqui, com você. É uma história de dedicação, amor e muita, muita fofura! E eu, como um legítimo Golden Retriever, carrego essa herança com orgulho e carinho. Prometo continuar essa tradição de lealdade, amor e alegria, enchendo seus dias de lambidas, brincadeiras e muito companheirismo.</p>
+                </div>
+            </div>
+            
+            <!-- Seção 2: Meu Jeito de Ser -->
+            <div class="mb-12">
+                <h3 class="section-title text-2xl md:text-3xl font-semibold text-[#906e28] mb-8">Meu Jeito de Ser</h3>
+                <div class="bio-text text-[#4a3b24]">
+                    <p class="mb-4">Oi, humano! Você já percebeu como eu adoro brincar com você? Sabia que é da minha natureza ser tão carinhoso e amigável? Nós, Golden Retrievers, somos conhecidos por nosso temperamento dócil e afetuoso. Adoramos estar perto das pessoas, principalmente de você, meu humano predileto.</p>
+                    <p class="mb-4">Sou um cachorro inteligente e aprendo rápido, adoro agradar e receber carinho. Às vezes, posso ser um pouco estabanado e cheio de energia, afinal, adoro me divertir! Mas também sei ser calmo e tranquilo quando necessário, adoro um bom cochilo no seu sofá depois de uma tarde de brincadeiras.</p>
+                    <p class="mb-4">Sou muito sociável e adoro fazer novos amigos, sejam eles humanos ou outros animais. Enfim, sou um Golden Retriever de corpo e alma, cheio de amor para dar e sempre pronto para uma nova aventura ao seu lado!</p>
+                </div>
+            </div>
+            
+            <!-- Seção 3: Como Cuidar de Mim -->
+            <div>
+                <h3 class="section-title text-2xl md:text-3xl font-semibold text-[#906e28] mb-8">Como Cuidar de Mim</h3>
+                <div class="bio-text text-[#4a3b24]">
+                    <p class="mb-4">Oi, humano querido! Para eu ficar sempre saudável e feliz ao seu lado, preciso de alguns cuidados especiais. Você sabia que eu preciso de escovação regular? Meu pelo dourado, tão macio e bonito, precisa ser escovado algumas vezes por semana para não embaraçar e ficar brilhante. E as minhas orelhas, tão fofinhas, precisam ser limpas com cuidado para evitar infecções.</p>
+                    <p class="mb-4">A alimentação também é importante! Preciso de ração de qualidade, na quantidade certa para manter meu peso ideal e minha energia lá em cima para nossas brincadeiras. Ah, e não se esqueça da água fresquinha sempre disponível!</p>
+                    <p class="mb-4">Adoro correr e brincar com você, então, exercícios diários são essenciais. Caminhadas, corridas no parque ou até mesmo buscar a bolinha no quintal me fazem muito feliz e me mantêm saudável.</p>
+                    <p>E, claro, não podemos esquecer das visitas regulares ao veterinário! Vacinas em dia e check-ups regulares são importantes para garantir que eu esteja sempre no meu melhor, pronto para te dar muito amor e lambidas carinhosas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Página 4 - Pedigree NFT -->
+    <section id="page4" class="page flex items-center justify-center p-6 md:p-12 bg-[#f8f4ea]">
+        <div class="max-w-4xl w-full bg-white rounded-2xl shadow-xl p-8 md:p-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#4a3b24] book-title">Pedigree NFT</h2>
+            
+            <div class="flex justify-center mb-8">
+                <div class="portrait-container rounded-lg overflow-hidden max-w-md w-full">
+                    <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Eo1U9k4AbSJPoV7seW2PDq2d/user-oGBnQp1igcXKlzRsuv3QKfH3/img-1ro7tif27xyarS80xU9EfRF9.png?st=2025-04-01T17%3A00%3A49Z&se=2025-04-01T19%3A00%3A49Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-01T09%3A18%3A34Z&ske=2025-04-02T09%3A18%3A34Z&sks=b&skv=2024-08-04&sig=21WzvHzMCBA/y%2B6IqhzDNkS7dvxDkPX4O6Q1qDR9SxI%3D" 
+                         alt="Pedigree NFT de Max"
+                         class="w-full rounded-lg" />
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <p class="text-[#4a3b24] italic mb-6">Este certificado digital representa a linhagem autêntica do Max, <br>preservando sua herança genética e história familiar.</p>
+                
+                <div class="inline-block bg-[#e8c98d] text-[#4a3b24] px-8 py-2 rounded-full font-medium">
+                    Certificado #GR20200101-123456789
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Função para animar a transição de páginas
+            const navDots = document.querySelectorAll('.nav-dot');
+            const pages = document.querySelectorAll('.page');
+            
+            // Atualiza o dot ativo baseado na posição da página
+            function updateActiveDot() {
+                const scrollPosition = window.scrollY;
+                
+                pages.forEach((page, index) => {
+                    const rect = page.getBoundingClientRect();
+                    const offset = 300; // Ajuste conforme necessário
+                    
+                    if (rect.top >= -offset && rect.top <= offset) {
+                        navDots.forEach(dot => dot.classList.remove('active'));
+                        navDots[index].classList.add('active');
+                    }
+                });
+            }
+            
+            // Scroll suave para as páginas
+            navDots.forEach(dot => {
+                dot.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    navDots.forEach(d => d.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Atualizar o dot ativo durante o scroll
+            window.addEventListener('scroll', updateActiveDot);
+            
+            // Iniciar com o dot correto ativo
+            updateActiveDot();
+        });
+    </script>
+</body>
+</html>
